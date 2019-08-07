@@ -4,8 +4,8 @@ const pgtools = require('pgtools');
 const config = {
   user: 'postgres',
   host: 'localhost',
-  port: 5432,
-  password: process.env.LOCAL_DATABASE_PASSWORD
+  port: 4000,
+  password: "ilovepie"
 };
 
 // The name of the database to create;

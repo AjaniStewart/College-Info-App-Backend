@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const helmet = require('helmet');
 const compression = require('compression');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 const bodyParser = require('body-parser');
 
 const createLocalDatabase = require('./utilities/createLocalDatabase');
@@ -14,21 +14,21 @@ const db = require('./database');
 const apiRouter = require("./routes/index.js");
 
 const syncDatabase = () => {
-    if (process.env.NODE_ENV === 'production') {
-      db.sync();
-    }
-    else {
-      console.log('As a reminder, the forced synchronization option is on');
-      db.sync({ force: true })
-        .catch(err => {
-          if (err.name === 'SequelizeConnectionError') {
-            createLocalDatabase();
-          }
-          else {
-            console.log(err);
-          }
-        });
-      }
+    // if (process.env.NODE_ENV === 'production') {
+    //   db.sync();
+    // }
+    // else {
+    //   console.log('As a reminder, the forced synchronization option is on');
+    //   db.sync({ force: true })
+    //     .catch(err => {
+    //       if (err.name === 'SequelizeConnectionError') {
+    //         createLocalDatabase();
+    //       }
+    //       else {
+    //         console.log(err);
+    //       }
+    //     });
+    //   }
   };
 
   const app = express();
@@ -77,4 +77,4 @@ const syncDatabase = () => {
 // app.use(bodyParser.json());
 
 // // console.log that your server is up and running
-// app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(3000, () => console.log(`Listening on port ${port}`));

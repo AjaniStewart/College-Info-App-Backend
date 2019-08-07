@@ -1,7 +1,8 @@
 const router = require("express").Router();
+let model = require('../database/models/campus')
 
 router.get('/', (req, res, next) => {
-    res.status(200).send(campuses);
+    res.status(200).send(model.findAll());
   });
   
   router.get('/:id', (req, res, next) => {
