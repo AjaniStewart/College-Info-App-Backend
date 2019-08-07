@@ -68,17 +68,22 @@ let students = [
   });
   
   router.post('/', (req, res, next) => {
-    let newStudent = req.body;
+    let newStudent = {'hello':'salmdl'};
     students.push(newStudent);
-    res.status(201).send(newStudent);
+    res.json({'code':'userCreated'});
   });
 
-  router.delete('/', (req, res, next) => {
-
+  router.delete('/:id', (req, res, next) => {
+    let num = req.params.id;
+    students.splice(num, 1); 
+   res.json({'code':'userDeleted'});
   });
-// app.delete()
 
-// app.put()
-// 204
+  router.put('/:id', (req, res, next) => {
+    let modifiedStudent = req.body;
+    let num = req.params.id;
+    students[num] = modifiedStudent;
+    res.status(200);
+  });
 
   module.exports = router;

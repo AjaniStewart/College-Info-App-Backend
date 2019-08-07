@@ -6,7 +6,7 @@ let campuses = [
     "name": "FullStack Academy",
     "imgUrl": "https://www.fullstackacademy.com/images/fa-logo.png",
     "address": "5 Hanover Sq",
-    "description": "Fullstack Academy is an immersive software engineering coding bootcamp located in New York City and Chicago. Students of the full-time flagship course learn full stack JavaScript over the course of a 13-week, on-campus program.",
+    "description": "Fullstack Academy is an immersive software engineering coding bootcamp located in New York City and Chicago.wCampuss of the full-time flagship course learn full stack JavaScript over the course of a 13-week, on-campus program.",
     "createdAt": "2018-12-05T23:02:45.290Z",
     "updatedAt": "2018-12-05T23:02:45.290Z"
     },
@@ -41,19 +41,30 @@ let campuses = [
 
 router.get('/', (req, res, next) => {
     res.status(200).send(campuses);
-});
+  });
   
-router.get('/:id', (req, res, next) => {
+  router.get('/:id', (req, res, next) => {
     let num = req.params.id;
     res.status(200).send(campuses[num]);
-});
+  });
   
-router.post('/', (req, res, next) => {
-    let newCampus = req.body;
+  router.post('/', (req, res, next) => {
+    let newCampus = {'hello':'salmdl'};
     campuses.push(newCampus);
-    res.status(201).send(newCampus);
-});
+    res.json({'code':'campusCreated'});
+  });
 
+  router.delete('/:id', (req, res, next) => {
+    let num = req.params.id;
+    campuses.splice(num, 1); 
+   res.json({'code':'campusDeleted'});
+  });
 
+  router.put('/:id', (req, res, next) => {
+    let modifiedCampus = req.body;
+    let num = req.params.id;
+    campuses[num] = modifiedCampus;
+    res.status(200);
+  });
 
 module.exports = router;
