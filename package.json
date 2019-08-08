@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "author": "Alex Tong",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "helmet": "^3.20.0",
     "morgan": "^1.9.1",
+    "nodemon": "^1.19.1",
     "path": "^0.12.7",
     "pgtools": "^0.3.0",
     "sequelize": "^5.12.3"
