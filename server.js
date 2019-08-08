@@ -64,6 +64,9 @@ const syncDatabase = () => {
       });
     };
 
+    app.get('*',(req,res,next) => {
+      res.status(404).send("not a valid path. use /api/students or /api/campuses");
+    })
     const bootApp = async () => {
         await syncDatabase();
         await configureApp();
