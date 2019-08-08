@@ -14,6 +14,7 @@ const db = require('./database');
 const apiRouter = require("./routes/index.js");
 
 const syncDatabase = () => {
+
     // if (process.env.NODE_ENV === 'production') {
     //   db.sync();
     // }
