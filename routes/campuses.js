@@ -1,44 +1,87 @@
 const router = require("express").Router();
-let model = require('../database/models/campus')
+let model = require('../database/models/campus');
+let students = require('../database/models/student');
 
 router.get('/', async (req, res, next) => {
-    // let currentCampus = {
-    //   "id": 3,
-    //   "name": "Brown University",
-    //   "imgUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/3/31/Brown_University_coat_of_arms.svg/130px-Brown_University_coat_of_arms.svg.png",
-    //   "address": "Providence, RI 02912",
-    //   "description": "Brown University is a private Ivy League research university in Providence, Rhode Island. Founded in 1764 as the College in the English Colony of Rhode Island and Providence Plantations, it is the seventh-oldest institution of higher education in the U.S. and one of the nine colonial colleges chartered before the American Revolution.",
-    //   };
-    //   const builtCampus= await model.create(currentCampus).then(console.log('ewqeqw')).catch(function(error) {
-    //     console.log(error);
-    //   });
-    res.status(200).send(await model.findAll().catch(function(error){
+    let allCampuses = await model.findAll()
+    .catch(error =>{
       console.log(error);
-    }));
+    });
+    if (allCampuses) res.status(200).send(allCampuses);
+    else{
+      res.status(404).send();
+    }
   });
   
-  router.get('/:id', (req, res, next) => {
+  router.get('/:id', async (req, res, next) => {
     let num = req.params.id;
-    res.status(200).send(campuses[num]);
+    let singleCampus = await model.findOne({
+      where : {
+        id : num
+      }
+    }).catch(error =>{
+      console.log(error);
+    });
+    singleCampus ? res.status(200).send(singleCampus) : res.status(404).send();
   });
   
-  router.post('/', (req, res, next) => {
-    let newCampus = {'hello':'salmdl'};
-    campuses.push(newCampus);
-    res.json({'code':'campusCreated'});
+  router.post('/', async (req, res, next) => {
+    const campus = req.body;
+    let builtCampus = await model.create(campus).catch(error =>{
+      console.log(error);
+    });
+    if (builtCampus) res.status(200).send(builtCampus)
+    else{
+      res.status(404).send("Invalid campus info");
+    }
   });
 
-  router.delete('/:id', (req, res, next) => {
+  router.delete('/:id', async (req, res, next) => {
     let num = req.params.id;
-    campuses.splice(num, 1); 
-   res.json({'code':'campusDeleted'});
+    let modified = await students.update(
+      {
+        "CampusId": null
+      }, 
+      {
+        where : {
+          CampusId : num
+        }
+      }).catch(error=>{console.log(error)});
+
+    const numberDeleted = await model.destroy({
+      where: {
+        id : num
+      }
+    }).catch(error =>{
+      console.log(error);
+    });
+
+    if (numberDeleted != 0) res.status(200).send(`Deleted ${numberDeleted} number of rows with id ${num}. Also modified ${modified} with campus id.`)
+    else{
+      res.status(404).send(`Did not find any campuses with id ${num} to delete. `)
+    }
   });
 
-  router.put('/:id', (req, res, next) => {
+  router.put('/:id', async (req, res, next) => {
     let modifiedCampus = req.body;
     let num = req.params.id;
-    campuses[num] = modifiedCampus;
-    res.status(200);
+    let modified = await model.update(
+      {
+        "name": modifiedCampus.name,
+        "imgUrl": modifiedCampus.imgUrl,
+        "address": modifiedCampus.address,
+        "description": modifiedCampus.description
+      }, 
+      {
+        where : {
+          id : num
+        }
+      }).catch(error=>{console.log(error)});
+
+      if(modified) res.status(200).send(`Updated campus with id ${num}`);
+      else{
+        res.status(404).send(`did not find student`);
+      }
   });
 
 module.exports = router;

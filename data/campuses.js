@@ -4,7 +4,7 @@ const campuses = [
     "name": "FullStack Academy",
     "imgUrl": "https://www.fullstackacademy.com/images/fa-logo.png",
     "address": "5 Hanover Sq",
-    "description": "Fullstack Academy is an immersive software engineering coding bootcamp located in New York City and Chicago.wCampuss of the full-time flagship course learn full stack JavaScript over the course of a 13-week, on-campus program.",
+    "description": "Fullstack Academy is an immersive software engineering coding bootcamp located in New York City and Chicago. Campus of the full-time flagship course learn full stack JavaScript over the course of a 13-week, on-campus program.",
     },
     {
     "id": 2,

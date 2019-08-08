@@ -35,7 +35,7 @@ const Student = db.define("Students", {
 
     CampusId: {
       type: Sequelize.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: 'Campuses', // <<< Note, its table's name, not object name
       referencesKey: 'id'
       
