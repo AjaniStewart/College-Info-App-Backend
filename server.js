@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const helmet = require('helmet');
 const compression = require('compression');
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 80;
 const bodyParser = require('body-parser');
 
 const createLocalDatabase = require('./utilities/createLocalDatabase');
@@ -78,4 +78,4 @@ const syncDatabase = () => {
 // app.use(bodyParser.json());
 
 // // console.log that your server is up and running
-app.listen(3000, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => console.log(`Listening on port ${port}`));
