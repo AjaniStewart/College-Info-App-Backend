@@ -22,7 +22,7 @@ router.get('/', async (req, res, next) => {
     }).catch(error =>{
       console.log(error);
     });
-    singleCampus ? res.status(200).send(singleCampus) : res.status(404).send();
+    singleCampus ? res.status(200).send(singleCampus) : res.status(404).send(`campus with id ${num} not found`);
   });
   
   router.post('/', async (req, res, next) => {
