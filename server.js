@@ -7,6 +7,7 @@ const compression = require('compression');
 const port = process.env.PORT || 80;
 const bodyParser = require('body-parser');
 
+const db = require('./database/index');
 const apiRouter = require("./routes/index.js");
 
 const app = express();
@@ -50,6 +51,7 @@ const bootApp = async () => {
 };
 
 // Main function invocation;
+db.sync({force: true});
 bootApp();
 
 module.exports = app;
