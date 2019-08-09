@@ -18,7 +18,7 @@ const students = [
     "campusId": 1
     },
     {
-    "id": 1,
+    "id": 1 ,
     "firstName": "justin",
     "lastName": "mintzer",
     "email": "mintzer.justin@gmail.com",
