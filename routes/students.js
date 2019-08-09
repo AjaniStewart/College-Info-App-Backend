@@ -75,7 +75,7 @@ const router = require("express").Router();
         id : num
       }
     }).catch(error=>{console.log(error)});
-    if(modified) res.status(200).send(`Updated student with id ${num}`);
+    if(modified) res.status(200).send(modified);
     else{
       res.status(404).send(`did not find student`);
     }
