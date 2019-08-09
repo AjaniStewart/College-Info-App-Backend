@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const port = process.env.PORT || 80;
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const db = require('./database/index');
 const apiRouter = require("./routes/index.js");
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(cors());
 
 // Mount our apiRouter;
 app.use('/api', apiRouter);
