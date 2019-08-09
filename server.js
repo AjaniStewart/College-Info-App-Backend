@@ -51,7 +51,7 @@ const bootApp = async () => {
 };
 
 // Main function invocation;
-db.sync({force: true});
+//db.sync({force: true});
 bootApp();
 
 module.exports = app;
