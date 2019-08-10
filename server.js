@@ -8,6 +8,7 @@ const port = process.env.PORT || 80;
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const db = require('./database/index');
 const apiRouter = require("./routes/index.js");
 
 const app = express();
@@ -52,6 +53,7 @@ const bootApp = async () => {
 };
 
 // Main function invocation;
+//db.sync({force: true});
 bootApp();
 
 module.exports = app;

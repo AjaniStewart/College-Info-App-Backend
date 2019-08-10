@@ -2,11 +2,11 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 
 const Campus = db.define("Campuses", {
-    id: {
-      primaryKey: true,
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
+    // id: {
+    //   primaryKey: true,
+    //   type: Sequelize.INTEGER,
+    //   allowNull: false
+    // },
 
     name: {
         type: Sequelize.STRING,

@@ -2,11 +2,11 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 
 const Student = db.define("Students", {
-    id: {
-      primaryKey: true,
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
+    // id: {
+    //   primaryKey: true,
+    //   type: Sequelize.INTEGER,
+    //   allowNull: false
+    // },
 
     firstName: {
         type: Sequelize.TEXT,
@@ -33,13 +33,13 @@ const Student = db.define("Students", {
       allowNull: false
     },
 
-    CampusId: {
-      type: Sequelize.INTEGER,
-      allowNull: true,
-      references: 'Campuses', // <<< Note, its table's name, not object name
-      referencesKey: 'id'
+    // CampusId: {
+    //   type: Sequelize.INTEGER,
+    //   allowNull: true,
+    //   references: 'Campuses', // <<< Note, its table's name, not object name
+    //   referencesKey: 'id'
       
-    },
+    // },
   });
   
   module.exports = Student;
