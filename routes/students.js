@@ -68,7 +68,7 @@ const router = require("express").Router();
       "email": modifiedStudent.emailName,
       "imageUrl": modifiedStudent.imageUrl,
       "gpa": modifiedStudent.gpa,
-      "CampusId": modifiedStudent.CampusId
+      "campusId": modifiedStudent.CampusId
     }, 
     {
       where : {
