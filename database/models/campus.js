@@ -24,7 +24,7 @@ const Campus = db.define("Campuses", {
       },
 
     description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
       },
   
